@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Online Medical Appointment</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <!-- Sign In / Sign Up Section -->
+      <div id="authSection">
+        <h2>Sign In / Sign Up</h2>
+        <form id="loginForm">
+          <label for="loginEmail">Email:</label>
+          <input
+            type="email"
+            id="loginEmail"
+            placeholder="Enter your email" name="email"
+            required
+          /><br />
+
+          <label for="loginPassword">Password:</label>
+          <input
+            type="password"
+            id="loginPassword"
+            placeholder="Enter your password" name="password"
+            required
+          /><br />
+
+          <button type="submit" id="loginBtn" hre="login">Login</button>
+          <p>
+            Don't have an account?
+            <button type="button" id="signupBtn">Sign Up</button>
+          </p>
+        </form>
+      </div>
+
+      <!-- Sign Up Form Section (Hidden by default) -->
+      <div id="signupSection" style="display: none">
+        <h2>Sign Up</h2>
+        <form id="signupForm">
+          <label for="signupEmail">Email:</label>
+          <input
+            type="email"
+            id="signupEmail"
+            placeholder="Enter your email"
+            required
+          /><br />
+
+          <label for="signupPassword">Password:</label>
+          <input
+            type="password"
+            id="signupPassword"
+            placeholder="Create your password"
+            required
+          /><br />
+
+          <button type="submit" id="createAccountBtn">Create Account</button>
+        </form>
+      </div>
+
+      <!-- Appointment Booking Form Section (Hidden until login/signup) -->
+      <div id="appointmentSection" style="display: none">
+        <h2>Book an Appointment</h2>
+        <form id="appointmentForm">
+          <!-- Name -->
+          <label for="name">Name:</label>
+          <input
+            type="text"
+            id="name"
+            placeholder="Enter your name"
+            required
+          /><br />
+
+          <!-- Age -->
+          <label for="age">Age:</label>
+          <input
+            type="number"
+            id="age"
+            placeholder="Enter your age"
+            required
+          /><br />
+
+          <!-- Email -->
+          <label for="email">Email:</label>
+          <input
+            type="email"
+            id="email"
+            placeholder="Enter your email"
+            required
+          /><br />
+
+          <!-- Mobile No -->
+          <label for="phone">Mobile No:</label>
+          <input
+            type="text"
+            id="phone"
+            placeholder="Enter your mobile number"
+            required
+          /><br />
+
+          <!-- Appointment Date -->
+          <label for="date">Appointment Date:</label>
+          <input type="date" id="date" required /><br />
+
+          <!-- Select Doctor -->
+          <label for="doctor">Select Doctor:</label>
+          <select id="doctor" required>
+            <option value="Dr. John">Dr. John</option>
+            <option value="Dr. Smith">Dr. Smith</option>
+            <option value="Dr. Jane">Dr. Jane</option>
+          </select><br />
+
+          <!-- Reason for Visit -->
+          <label for="reason">Reason for Visit:</label>
+          <textarea
+            id="reason"
+            placeholder="Enter reason for visit"
+            required
+          ></textarea><br />
+
+          <!-- Submit Button -->
+          <button type="submit">Book Appointment</button>
+        </form>
+        <p id="message"></p>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>

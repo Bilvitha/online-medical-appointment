@@ -1,0 +1,47 @@
+body {
+  font-family: "Poppins", sans-serif;
+  background: linear-gradient(135deg, #c2e59c, #64b3f4);
+  margin: 0;
+}
+
+nav {
+  background: #333;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 30px;
+}
+
+table {
+  width: 95%;
+  margin: 30px auto;
+  border-collapse: collapse;
+  background: white;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+th, td {
+  border: 1px solid #ddd;
+  padding: 10px;
+  text-align: center;
+}
+
+th {
+  background: #2b9edc;
+  color: white;
+}
+
+button {
+  background: crimson;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+button:hover {
+  background: darkred;
+}
