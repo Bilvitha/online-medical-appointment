@@ -7,18 +7,50 @@ import appointmentRoutes from "./routes/appointmentRoutes.js";
 
 dotenv.config();
 const app = express();
+const DEFAULT_PORT = process.env.PORT || 5000;
 
-app.use(cors());
+// Middleware
+app.use(cors({
+  origin: ["http://localhost:3000", "http://127.0.0.1:3000"],
+  methods: ["GET", "POST", "PUT", "DELETE"],
+  credentials: true
+}));
 app.use(express.json());
 
+// Routes
 app.use("/api/auth", authRoutes);
 app.use("/api/appointments", appointmentRoutes);
 
-mongoose
-  .connect(process.env.MONGO_URI)
-  .then(() => console.log("✅ MongoDB Connected"))
-  .catch((err) => console.log("❌ MongoDB Error:", err));
+// Root route
+app.get("/", (req, res) => res.send("✅ Online Medical Appointment API is running..."));
 
-app.listen(process.env.PORT, () =>
-  console.log(`🚀 Server running on port ${process.env.PORT}`)
-);
+// MongoDB connect + server start with fallback
+const startServer = async () => {
+  try {
+    await mongoose.connect(process.env.MONGO_URI, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    });
+    console.log("✅ MongoDB Connected Successfully");
+
+    const server = app.listen(DEFAULT_PORT, () => {
+      console.log(`🚀 Server running on http://localhost:${DEFAULT_PORT}`);
+    });
+
+    server.on("error", (err) => {
+      if (err.code === "EADDRINUSE") {
+        const newPort = parseInt(DEFAULT_PORT) + 1;
+        console.warn(`⚠️ Port ${DEFAULT_PORT} in use, retrying on ${newPort}...`);
+        app.listen(newPort, () => {
+          console.log(`🚀 Server running on http://localhost:${newPort}`);
+        });
+      } else {
+        console.error("❌ Server error:", err);
+      }
+    });
+  } catch (err) {
+    console.error("❌ MongoDB Connection Error:", err.message);
+  }
+};
+
+startServer();
