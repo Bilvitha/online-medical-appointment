@@ -1,0 +1,18 @@
+# Stage 1: Build React app
+FROM node:18-alpine AS build
+WORKDIR /app
+
+COPY package*.json ./
+RUN npm install
+
+COPY . .
+RUN npm run build
+
+# Stage 2: Serve with Nginx
+# Simple Nginx container for static site
+FROM nginx:alpine
+WORKDIR /usr/share/nginx/html
+COPY . .
+EXPOSE 80
+CMD ["nginx", "-g", "daemon off;"]
+
